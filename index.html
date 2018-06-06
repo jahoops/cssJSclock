@@ -4,18 +4,45 @@
 <head>
   <meta charset="UTF-8">
   <title>JS + CSS Clock</title>
+  <!-- Bootstrap4 is the best -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
-  <div class="clock">
-    <div class="clock-face">
-      <div class="hand hour-hand"></div>
-      <div class="hand min-hand"></div>
-      <div class="hand second-hand"></div>
-    </div>
-  </div>
-  <script src="index.js"></script>
+  <div class="container-fluid d-flex h-100 flex-column">
+    <div class="row bg-light flex-fill d-flex justify-content-start">
+      <div class="col-3 h-100" id="left-side-menu">
+        <strong>kallihooper.com ... </strong>
+        <hr/>
+        <ul>
+          <li><a href="clock/clock.html">View Clock</a></li>
+          <li><a href="weather/weather.html">View Weather</a></li>
+        </ul>
+      </div>
+      <div class="col-9  h-100 bg-dark" id="right-side-content">
+      </div>
+    </div><!-- end row -->
+  </div><!-- end container -->
+  
+  <!-- loading the mighty Bootstrap4 and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- JavaScript can be here, or in a separate file, if I have a lot I do a separate file -->
+  <script>
+    //the $ means jQuery, this initial function will only run after the page is completely loaded
+    $(function(){
+      // click event
+      $("#left-side-menu li a").click(function(e){
+          e.preventDefault(); // to prevent the default anchor tag behaviour, which would display a new page
+          var url = this.href;  // grab the url, we only want to fill the content div, not switch to the page
+          $.get(url,function(returnedpage) {
+            $("#right-side-content").html(returnedpage);
+          }); // load the content div with the selected page content
+      });
+    }); 
+  </script>
 </body>
 
 </html>
