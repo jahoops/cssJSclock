@@ -215,14 +215,13 @@
         };
         $('#contact-submit').on('click', function () {
             debugger;
-            var formdata = {};
-            var formstring = JSON.stringify($('#contact').serializeObject());
-            formdata.ContactJSON = formstring;
-            console.log(formdata, formstring);
+            var formobj = {};
+            formobj.ContactJSON = JSON.stringify($('#contact').serializeArray());
+            console.log(1,formobj);
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "dataType": "jsonp",
+                "dataType": "json",
                 "url": "http://jwhooper.net/api/Contacts",
                 "method": "POST",
                 "headers": {
@@ -230,11 +229,14 @@
                     "cache-control": "no-cache"
                 },
                 "processData": false,
-                "data": JSON.stringify(formdata)
+                "data": JSON.stringify(formobj)
             }
 
             $.ajax(settings).done(function (response) {
-                console.log(response);
+                alert('Message Sent!');
+            })
+            .fail( function(){
+                alert('Error, message not sent');
             });
         });
     </script>
