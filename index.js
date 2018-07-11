@@ -1,18 +1,38 @@
-  const secondHand = document.querySelector('.second-hand');
-  const minuteHand = document.querySelector('.min-hand');
-  const hoursHand = document.querySelector('.hour-hand');
 
-  function setDate() {
-    const now = new Date();
-    const seconds = now.getSeconds();
-    const secondsDegrees = ((seconds / 60) * 360) + 90;
-    secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-    console.log(seconds);
-    const mins = now.getMinutes();
-    const minutesDegrees = ((mins / 60) * 360) + 90;
-    minuteHand.style.transform = `rotate(${minutesDegrees}deg)`
-    const hours = now.getHours();
-    const hoursDegrees = ((hours / 12) * 360) + 90;
-    hoursHand.style.transform = `rotate(${hoursDegrees}deg)`
+const header = document.querySelector('header');
+const footer = document.querySelector('footer');
+const menu = document.querySelector('ul.nav');
+const menuitems = document.querySelectorAll('.inline-items li');
+
+
+(function() { 
+  
+  function menutop() {
+  
+      header.classList.add("fadein");
+      footer.classList.add("fadein");
+      menu.classList.add('slidein');
+      for(var i=0; i<menuitems.length; i++){
+        menuitems[i].classList.add('grow');
+      }
+     
   }
-  setInterval(setDate, 1000);
+
+  menutop();
+  $('#portfoliolink').hover(function(){
+    $(".nav ul").css({'top':0,'left':0});
+    $(".nav ul").position({'my':'center top ', 'at':'center bottom ','of':this}); 
+     $(".nav ul").show();
+  }, function(){
+  
+  })
+  
+  $('.nav ul').hover(function(){
+    $(".nav ul").show();
+  }, function(){
+    $(".nav ul").hide();
+  })
+
+})();
+
+

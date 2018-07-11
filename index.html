@@ -2,20 +2,78 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>JS + CSS Clock</title>
-  <link rel="stylesheet" type="text/css" href="index.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <link href="index.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-  <div class="clock">
-    <div class="clock-face">
-      <div class="hand hour-hand"></div>
-      <div class="hand min-hand"></div>
-      <div class="hand second-hand"></div>
+
+  
+  <header>
+    <nav>
+      <ul class="nav inline-items">
+        <li>
+          <a href="#">Home</a>
+        </li>
+
+        <li id="portfoliolink">
+          <a  href="#">My Portfolio &#9662; </a>
+            <ul>
+            <li> <a href="simpleparallax-master/index.html">JavaScript </a></li>
+            <li> <a href="animate">CAD </a></li>
+            <li> <a href="#">Excel </a></li>
+            </ul>
+        </li>
+        <li>
+          <a href="#">Photos</a>
+        </li>
+        <li>
+          <a href="#">Blog</a>
+        </li>
+        <li>
+          <a href="#"> Contact Me </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+
+
+  <footer>
+    <ul class="inline-items">
+      <li>
+        <a href="#">Sitemap</a>
+      </li>
+      <li>
+        <a href="#">Privacy Policy</a>
+      </li>
+    </ul>
+  </footer>
+
+  <div class="diamond">
+    <div class="diamondtext">
+      <h2>Hi!</h2>
+      <p>I'm Kalli</p>
     </div>
   </div>
-  <script src="index.js"></script>
+
+  <div class="leftdiamond">
+    <div class="diamondtext">
+      <h2>Hi!</h2>
+      <p>I'm Kalli</p>
+    </div>
+  </div>
+
+  <div class="rightdiamond">
+    <div class="diamondtext">
+      <h2>Hi!</h2>
+      <p>I'm Kalli</p>
+    </div>
+  </div>
+
+<script src="/simpleparallax-master/js/jquery-3.3.1.min.js"></script>
+<script src="/simpleparallax-master/js/jquery-ui.min.js"></script>
+<script src="index.js"></script>
 </body>
 
 </html>
