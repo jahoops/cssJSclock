@@ -214,10 +214,8 @@
             return o;
         };
         $('#contact-submit').on('click', function () {
-            debugger;
             var formobj = {};
             formobj.ContactJSON = JSON.stringify($('#contact').serializeArray());
-            console.log(1,formobj);
             var settings = {
                 "async": true,
                 "crossDomain": true,
@@ -234,8 +232,7 @@
 
             $.ajax(settings).done(function (response) {
                 alert('Message Sent!');
-            })
-            .fail( function(){
+            }).fail( function(){
                 alert('Error, message not sent');
             });
         });
