@@ -165,19 +165,19 @@
             <h3>kallihooper.com</h3>
             <h4>Send a message!</h4>
             <fieldset>
-                <input id="yourname" placeholder="Your name" type="text" tabindex="1" required autofocus>
+                <input name="name" placeholder="Your name" type="text" tabindex="1" required autofocus>
             </fieldset>
             <fieldset>
-                <input placeholder="Your Email Address" type="email" tabindex="2" required>
+                <input name="email" placeholder="Your Email Address" type="email" tabindex="2" required>
             </fieldset>
             <fieldset>
-                <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3">
+                <input name="phone" placeholder="Your Phone Number (optional)" type="tel" tabindex="3">
             </fieldset>
             <fieldset>
-                <input placeholder="Your Web Site (optional)" type="url" tabindex="4">
+                <input name="website" placeholder="Your Web Site (optional)" type="url" tabindex="4">
             </fieldset>
             <fieldset>
-                <textarea id="yourcomment" placeholder="Type your message here...." tabindex="5" required></textarea>
+                <textarea name="message" placeholder="Type your message here...." tabindex="5" required></textarea>
             </fieldset>
             <fieldset>
                 <button type="button" id="contact-submit">Submit</button>
@@ -198,24 +198,44 @@
 
     <script src="/simpleparallax-master/js/jquery-3.3.1.min.js"></script>
     <script>
-        $('#contact-submit').on('click', function () {
-            $.ajax({
-                    method: "POST",
-                    url: "http://jwhooper.net/api/Comments",
-                    data: {
-                            CommentId: null,
-                            CommentName: $('#yourname').val(),
-                            CommentText: $('#yourcomment').val(),
-                            CommentTimeStamp: null
+        $.fn.serializeObject = function () {
+          var o = {};
+            var a = this.serializeArray();
+            $.each(a, function () {
+                if (o[this.name] !== undefined) {
+                    if (!o[this.name].push) {
+                        o[this.name] = [o[this.name]];
                     }
-                })
-                .done(function (msg) {
-                    alert("Message sent!");
-                })
-                .fail(function (msg) {
-                    console.log(msg);
-                    alert("Error -- Message not sent: ");
-                });
+                    o[this.name].push(this.value || '');
+                } else {
+                    o[this.name] = this.value || '';
+                }
+            });
+            return o;
+        };
+        $('#contact-submit').on('click', function () {
+            debugger;
+            var formdata = {};
+            var formstring = JSON.stringify($('#contact').serializeObject());
+            formdata.ContactJSON = formstring;
+            console.log(formdata, formstring);
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "dataType": "jsonp",
+                "url": "http://jwhooper.net/api/Contacts",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/json",
+                    "cache-control": "no-cache"
+                },
+                "processData": false,
+                "data": JSON.stringify(formdata)
+            }
+
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
         });
     </script>
 </body>
